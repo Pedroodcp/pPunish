@@ -1,0 +1,11 @@
+name: pPunish
+version: 1.0
+author: Pedrodcp
+main: br.com.pedrodcp.ppunish.pPunish
+commands:
+  punir:
+    aliases: [punish]
+  unpunish:
+    aliases: [despunir]
+  checkpunish:
+    aliases: [checkpunir]
