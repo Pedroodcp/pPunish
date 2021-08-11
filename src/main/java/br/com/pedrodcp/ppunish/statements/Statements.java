@@ -93,10 +93,10 @@ public class Statements {
                     existsStatement.setInt(4, account.getID());
                     existsStatement.setString(5, account.getProvas());
                     existsStatement.setString(6, account.getTipo());
-                    existsStatement.setString(7, account.getPlayerName().toLowerCase());
+                    existsStatement.setString(7, account.getPlayerName());
                     existsStatement.executeUpdate();
                 } else {
-                    st.setString(1, account.getPlayerName().toLowerCase());
+                    st.setString(1, account.getPlayerName());
                     st.setString(2, account.getAutor());
                     st.setLong(3, account.getTempo());
                     st.setString(4, account.getMotivo());

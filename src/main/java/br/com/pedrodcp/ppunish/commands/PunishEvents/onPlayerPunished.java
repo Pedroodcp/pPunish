@@ -25,7 +25,7 @@ public class onPlayerPunished {
                             int IdCount = Account.accountsPunicoes.size() + 1;
                             player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                             long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                            Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                            Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                             API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                             API.getAccount(jogador).setAutor(player.getName());
                             API.getAccount(jogador).setMotivo(motivo);
@@ -40,7 +40,7 @@ public class onPlayerPunished {
                             int IdCount = Account.accountsPunicoes.size() + 1;
                             player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                             long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                            Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                            Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                             API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                             API.getAccount(jogador).setAutor(player.getName());
                             API.getAccount(jogador).setMotivo(motivo);
@@ -68,7 +68,7 @@ public class onPlayerPunished {
                             int IdCount = Account.accountsPunicoes.size() + 1;
                             player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                             long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                            Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                            Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                             API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                             API.getAccount(jogador).setAutor(player.getName());
                             API.getAccount(jogador).setMotivo(motivo);
@@ -83,7 +83,7 @@ public class onPlayerPunished {
                             int IdCount = Account.accountsPunicoes.size() + 1;
                             player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                             long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                            Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                            Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                             API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                             API.getAccount(jogador).setAutor(player.getName());
                             API.getAccount(jogador).setMotivo(motivo);
@@ -110,7 +110,7 @@ public class onPlayerPunished {
                                 int IdCount = Account.accountsPunicoes.size() + 1;
                                 player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                                 long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                                Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                                Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                                 API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                                 API.getAccount(jogador).setAutor(player.getName());
                                 API.getAccount(jogador).setMotivo(motivo);
@@ -125,7 +125,7 @@ public class onPlayerPunished {
                                 int IdCount = Account.accountsPunicoes.size() + 1;
                                 player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                                 long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                                Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                                Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                                 API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                                 API.getAccount(jogador).setAutor(player.getName());
                                 API.getAccount(jogador).setMotivo(motivo);
@@ -160,7 +160,7 @@ public class onPlayerPunished {
                         int IdCount = Account.accountsPunicoes.size() + 1;
                         player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                         long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                        Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                        Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                         API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                         API.getAccount(jogador).setAutor(player.getName());
                         API.getAccount(jogador).setMotivo(motivo);
@@ -175,7 +175,7 @@ public class onPlayerPunished {
                         int IdCount = Account.accountsPunicoes.size() + 1;
                         player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                         long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                        Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                        Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                         API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                         API.getAccount(jogador).setAutor(player.getName());
                         API.getAccount(jogador).setMotivo(motivo);
@@ -201,7 +201,7 @@ public class onPlayerPunished {
                             int IdCount = Account.accountsPunicoes.size() + 1;
                             player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                             long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                            Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                            Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                             API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                             API.getAccount(jogador).setAutor(player.getName());
                             API.getAccount(jogador).setMotivo(motivo);
@@ -216,7 +216,7 @@ public class onPlayerPunished {
                             int IdCount = Account.accountsPunicoes.size() + 1;
                             player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                             long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                            Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                            Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                             API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                             API.getAccount(jogador).setAutor(player.getName());
                             API.getAccount(jogador).setMotivo(motivo);
@@ -241,7 +241,7 @@ public class onPlayerPunished {
                                 int IdCount = Account.accountsPunicoes.size() + 1;
                                 player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                                 long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                                Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                                Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                                 API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                                 API.getAccount(jogador).setAutor(player.getName());
                                 API.getAccount(jogador).setMotivo(motivo);
@@ -256,7 +256,7 @@ public class onPlayerPunished {
                                 int IdCount = Account.accountsPunicoes.size() + 1;
                                 player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
                                 long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                                Account.accountsPunicoes.add(new Account(jogador, player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
+                                Account.accountsPunicoes.add(new Account(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo));
                                 API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                                 API.getAccount(jogador).setAutor(player.getName());
                                 API.getAccount(jogador).setMotivo(motivo);
