@@ -31,26 +31,29 @@ public class Punishments {
         for (Account account : Account.accountsPunicoes) {
             if (account.getPlayerName().equalsIgnoreCase(playerName)) {
                 Account.accountsPunicoes.forEach(key -> {
-                    ItemStack item = new Item(Material.STAINED_GLASS_PANE, 1, (short) 14)
-                            .setName("§c" + key.getMotivo())
-                            .setLore(Arrays.asList(
-                                    "",
-                                    "§7ID: §f#" + key.getID(),
-                                    "§7Infrator: §f" + key.getPlayerName(),
-                                    "§7Autor: §f" + key.getAutor(),
-                                    // "§7Data: §f" + new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()), //
-                                    "",
-                                    "§7Motivo: §f" + key.getMotivo(),
-                                    "§7Tipo: §f" + key.getTipo(),
-                                    "§7Provas: §f" + key.getProvas().replace("none", "Não informado."),
-                                    "",
-                                    "§eClique para mais detalhes."
-                            ))
-                            .getItemStack();
-                    ItemMeta itemMeta = item.getItemMeta();
-                    item.setItemMeta(itemMeta);
-                    if (itens.size() < listItens.size()) {
-                        itens.add(item);
+                    if (String.valueOf(key.getID()).equals(String.valueOf(account.getID()))) {
+                        ItemStack item = new Item(Material.STAINED_GLASS_PANE, 1, (short) 14)
+                                .setName("§c" + key.getMotivo())
+                                .setLore(Arrays.asList(
+                                        "",
+                                        "§7ID: §f#" + key.getID(),
+                                        "§7Infrator: §f" + key.getPlayerName(),
+                                        "§7Autor: §f" + key.getAutor(),
+                                        // "§7Data: §f" + new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()), //
+                                        "",
+                                        "§7Motivo: §f" + key.getMotivo(),
+                                        "§7Tipo: §f" + key.getTipo(),
+                                        "§7Provas: §f" + key.getProvas().replace("none", "Não informado."),
+                                        "",
+                                        "§eClique para mais detalhes."
+                                ))
+                                .getItemStack();
+                        ItemMeta itemMeta = item.getItemMeta();
+                        item.setItemMeta(itemMeta);
+                        Integer i = Collections.max(listItens);
+                        if (itens.size() < i) {
+                            itens.add(item);
+                        }
                     }
                 });
                 if (itens.size() == 0) {
@@ -74,6 +77,7 @@ public class Punishments {
                                             String punishStringId = m.group(1);
                                             Double punishDoubleId = Double.parseDouble(punishStringId);
                                             punishId = punishDoubleId.intValue();
+                                            System.out.println(punishId);
                                         } else {
                                             p.sendMessage("§cOcorreu um erro ao tentar abrir esta aba de informações.");
                                         }

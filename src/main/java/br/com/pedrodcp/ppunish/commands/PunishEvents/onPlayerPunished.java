@@ -63,7 +63,7 @@ public class onPlayerPunished {
                         if (Bukkit.getPlayer(jogador) == null) {
                             all.sendMessage("");
                             all.sendMessage("§c• " + jogador + " foi " + msg + " por " + player.getName());
-                            all.sendMessage("§c• Motivo:" + motivo + " - " + provas);
+                            all.sendMessage("§c• Motivo: " + motivo + " - " + provas);
                             all.sendMessage("");
                             int IdCount = Account.accountsPunicoes.size() + 1;
                             player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
@@ -196,7 +196,7 @@ public class onPlayerPunished {
                         if (Bukkit.getPlayer(jogador) == null) {
                             Bukkit.getConsoleSender().sendMessage("");
                             Bukkit.getConsoleSender().sendMessage("§c• " + jogador + " foi " + msg + " por " + player.getName());
-                            Bukkit.getConsoleSender().sendMessage("§c• Motivo:" + motivo + " - " + provas);
+                            Bukkit.getConsoleSender().sendMessage("§c• Motivo: " + motivo + " - " + provas);
                             Bukkit.getConsoleSender().sendMessage("");
                             int IdCount = Account.accountsPunicoes.size() + 1;
                             player.sendMessage("§eJogador punido com sucesso. §e#" + IdCount);
