@@ -1,5 +1,6 @@
 package br.com.pedrodcp.ppunish.gui;
 
+import br.com.pedrodcp.ppunish.api.API;
 import br.com.pedrodcp.ppunish.models.Account;
 import br.com.pedrodcp.ppunish.utils.Item;
 import br.com.pedrodcp.ppunish.utils.Scroller;
@@ -7,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -16,7 +18,12 @@ import static br.com.pedrodcp.ppunish.commands.checkpunish.*;
 
 public class Punishments {
 
+    protected String keyProvas;
+    protected String keyCor;
+    protected String keyStatus;
+
     private static final Pattern pattern = Pattern.compile("[^\\d]*[\\d]+[^\\d]+([\\d]+)");
+
     public static int punishId;
 
     public void gameGUI(Player p) {
@@ -32,22 +39,38 @@ public class Punishments {
             if (account.getPlayerName().equalsIgnoreCase(playerName)) {
                 Account.accountsPunicoes.forEach(key -> {
                     if (String.valueOf(key.getID()).equals(String.valueOf(account.getID()))) {
-                        ItemStack item = new Item(Material.STAINED_GLASS_PANE, 1, (short) 14)
-                                .setName("§c" + key.getMotivo())
-                                .setLore(Arrays.asList(
-                                        "",
-                                        "§7ID: §f#" + key.getID(),
-                                        "§7Infrator: §f" + key.getPlayerName(),
-                                        "§7Autor: §f" + key.getAutor(),
-                                        // "§7Data: §f" + new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()), //
-                                        "",
-                                        "§7Motivo: §f" + key.getMotivo(),
-                                        "§7Tipo: §f" + key.getTipo(),
-                                        "§7Provas: §f" + key.getProvas().replace("none", "Não informado."),
-                                        "",
-                                        "§eClique para mais detalhes."
-                                ))
-                                .getItemStack();
+                        if (key.getProvas().equalsIgnoreCase("none")) {
+                            keyProvas = "Não informado.";
+                        } else {
+                            keyProvas = key.getProvas();
+                        }
+                        if (String.valueOf(API.getAccount(key.getPlayerName()).getID()).contains(String.valueOf(key.getID()))) {
+                            keyCor = "§a";
+                            keyStatus = "§aAtiva.";
+                        } else {
+                            keyCor = "§c";
+                            keyStatus = "§cExpirada.";
+                        }
+                        ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+                        SkullMeta metaitem = (SkullMeta) item.getItemMeta();
+                        metaitem.setOwner(key.getPlayerName());
+                        metaitem.setDisplayName(keyCor + key.getMotivo());
+                        metaitem.setLore(Arrays.asList(
+                                "",
+                                "§7ID: §f#" + key.getID(),
+                                "§7Infrator: §f" + key.getPlayerName(),
+                                "§7Autor: §f" + key.getAutor(),
+                                // "§7Data: §f" + new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()), //
+                                "",
+                                "§7Motivo: §f" + key.getMotivo(),
+                                "§7Tipo: §f" + key.getTipo(),
+                                "§7Provas: §f" + keyProvas,
+                                "",
+                                "§7Status: " + keyStatus,
+                                "",
+                                "§eClique para mais detalhes."
+                                ));
+                        item.setItemMeta(metaitem);
                         ItemMeta itemMeta = item.getItemMeta();
                         item.setItemMeta(itemMeta);
                         Integer i = Collections.max(listItens);
@@ -57,7 +80,7 @@ public class Punishments {
                     }
                 });
                 if (itens.size() == 0) {
-                    p.sendMessage("§cEste jogador não possui histórico de punições.");
+                    p.sendMessage("§cEste jogador não possui um histórico de punições.");
                     return;
                 }
 
@@ -77,7 +100,6 @@ public class Punishments {
                                             String punishStringId = m.group(1);
                                             Double punishDoubleId = Double.parseDouble(punishStringId);
                                             punishId = punishDoubleId.intValue();
-                                            System.out.println(punishId);
                                         } else {
                                             p.sendMessage("§cOcorreu um erro ao tentar abrir esta aba de informações.");
                                         }

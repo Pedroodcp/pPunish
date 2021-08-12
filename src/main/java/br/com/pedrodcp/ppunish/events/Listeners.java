@@ -107,7 +107,7 @@ public class Listeners implements Listener {
                 p.sendMessage(" §c* Motivo: " + motivo);
                 p.sendMessage(" §c* Autor: " + API.getAccount(p.getName()).getAutor());
                 p.sendMessage(" §c* Crie um ticket de revisão em nosso Discord, acesse");
-                p.sendMessage(" §e§nredemake.com/discord§c.");
+                p.sendMessage(" §e§nmineup.com.br/discord§c.");
                 p.sendMessage("");
             } else {
                 if (API.getAccount(p.getName()).getTempo() != 0) {

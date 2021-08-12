@@ -19,11 +19,15 @@ public class checkpunish implements CommandExecutor {
         if (c.getName().equalsIgnoreCase("checkpunish")) {
             Player p = (Player) s;
             if (args.length >= 1) {
-                if (API.getAccountPunicoes(args[0]) == null) {
+                if (API.getAccount(args[0]) == null) {
                     p.sendMessage("§cEste jogador não existe.");
                 } else {
-                    playerName = args[0];
-                    gui.gameGUI(p);
+                    if (API.getAccountPunicoes(args[0]) == null) {
+                        p.sendMessage("§cEste jogador não possui um histórico de punições.");
+                    } else {
+                        playerName = args[0];
+                        gui.gameGUI(p);
+                    }
                 }
             } else {
                 p.sendMessage("§cVocê precisa inserir um nickname.");
