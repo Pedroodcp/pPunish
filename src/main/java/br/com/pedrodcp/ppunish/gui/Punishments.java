@@ -2,12 +2,10 @@ package br.com.pedrodcp.ppunish.gui;
 
 import br.com.pedrodcp.ppunish.api.API;
 import br.com.pedrodcp.ppunish.models.Account;
-import br.com.pedrodcp.ppunish.utils.Item;
 import br.com.pedrodcp.ppunish.utils.Scroller;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.*;
@@ -52,10 +50,10 @@ public class Punishments {
                             keyStatus = "§cExpirada.";
                         }
                         ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
-                        SkullMeta metaitem = (SkullMeta) item.getItemMeta();
-                        metaitem.setOwner(key.getPlayerName());
-                        metaitem.setDisplayName(keyCor + key.getMotivo());
-                        metaitem.setLore(Arrays.asList(
+                        SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
+                        skullMeta.setOwner(key.getPlayerName());
+                        skullMeta.setDisplayName(keyCor + key.getMotivo());
+                        skullMeta.setLore(Arrays.asList(
                                 "",
                                 "§7ID: §f#" + key.getID(),
                                 "§7Infrator: §f" + key.getPlayerName(),
@@ -70,9 +68,7 @@ public class Punishments {
                                 "",
                                 "§eClique para mais detalhes."
                                 ));
-                        item.setItemMeta(metaitem);
-                        ItemMeta itemMeta = item.getItemMeta();
-                        item.setItemMeta(itemMeta);
+                        item.setItemMeta(skullMeta);
                         Integer i = Collections.max(listItens);
                         if (itens.size() < i) {
                             itens.add(item);
@@ -86,7 +82,7 @@ public class Punishments {
 
                 Scroller scroller = new Scroller.ScrollerBuilder()
                         .withSize(54)
-                        .withName("§8Registro de Punições")
+                        .withName("§8Punições de " + API.getAccount(playerName).getPlayerName())
                         .withItems(itens)
                         .withItemsSlots(10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43)
                         .withArrowsSlots(45, 53)
@@ -100,6 +96,7 @@ public class Punishments {
                                             String punishStringId = m.group(1);
                                             Double punishDoubleId = Double.parseDouble(punishStringId);
                                             punishId = punishDoubleId.intValue();
+                                            p.openInventory(new PlayerPunishmentInfo().getInventory());
                                         } else {
                                             p.sendMessage("§cOcorreu um erro ao tentar abrir esta aba de informações.");
                                         }

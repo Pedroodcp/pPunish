@@ -10,7 +10,9 @@ import org.bukkit.entity.Player;
 public class checkpunish implements CommandExecutor {
 
     private Punishments gui = new Punishments();
+
     public static String playerName;
+    public static String autorName;
 
     @Override
     public boolean onCommand(CommandSender s, Command c, String label, String[] args) {
@@ -26,6 +28,7 @@ public class checkpunish implements CommandExecutor {
                         p.sendMessage("§cEste jogador não possui um histórico de punições.");
                     } else {
                         playerName = args[0];
+                        autorName = p.getName();
                         gui.gameGUI(p);
                     }
                 }

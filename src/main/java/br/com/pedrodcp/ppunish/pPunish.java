@@ -3,6 +3,7 @@ package br.com.pedrodcp.ppunish;
 import br.com.pedrodcp.ppunish.commands.checkpunish;
 import br.com.pedrodcp.ppunish.commands.punir;
 import br.com.pedrodcp.ppunish.commands.unpunish;
+import br.com.pedrodcp.ppunish.events.InventoryClick;
 import br.com.pedrodcp.ppunish.events.Listeners;
 import br.com.pedrodcp.ppunish.models.database.ConnectionModel;
 import br.com.pedrodcp.ppunish.models.database.MySQLConnection;
@@ -61,6 +62,7 @@ public class pPunish extends JavaPlugin {
     public void loadEvents() {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new Listeners(), this);
+        pm.registerEvents(new InventoryClick(), this);
     }
 
     public static pPunish getInstance() {
