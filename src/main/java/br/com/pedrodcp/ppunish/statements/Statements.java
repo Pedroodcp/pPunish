@@ -1,7 +1,7 @@
 package br.com.pedrodcp.ppunish.statements;
 
-import br.com.pedrodcp.ppunish.api.API;
 import br.com.pedrodcp.ppunish.models.Account;
+import br.com.pedrodcp.ppunish.models.PunishmentAccount;
 import br.com.pedrodcp.ppunish.pPunish;
 
 import java.sql.Connection;
@@ -21,7 +21,7 @@ public class Statements {
         try {
             openConnection();
             PreparedStatement st = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ppunish_registro (nome varchar(16), autor text, tempo long, motivo text, id int, provas text, tipo text)");
-            PreparedStatement st2 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ppunish_punicoes (nome varchar(16), autor text, tempo long, motivo text, id int, provas text, tipo text)");
+            PreparedStatement st2 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ppunish_punicoes (nome varchar(16), autor text, tempo long, motivo text, id int, provas text, tipo text, unpunish_autor text, unpunish_motivo text, unpunish_data text)");
             st.executeUpdate();
             st.close();
             st2.executeUpdate();
@@ -40,7 +40,7 @@ public class Statements {
             ResultSet rs = st.executeQuery();
             ResultSet rs2 = st2.executeQuery();
             while (rs.next()) Account.accounts.add(new Account(rs.getString("nome"), rs.getString("autor"), rs.getLong("tempo"), rs.getString("motivo"), rs.getInt("id"), rs.getString("provas"), rs.getString("tipo")));
-            while (rs2.next()) Account.accountsPunicoes.add(new Account(rs2.getString("nome"), rs2.getString("autor"), rs2.getLong("tempo"), rs2.getString("motivo"), rs2.getInt("id"), rs2.getString("provas"), rs2.getString("tipo")));
+            while (rs2.next()) PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(rs2.getString("nome"), rs2.getString("autor"), rs2.getLong("tempo"), rs2.getString("motivo"), rs2.getInt("id"), rs2.getString("provas"), rs2.getString("tipo"), rs2.getString("unpunish_autor"), rs2.getString("unpunish_motivo"), rs2.getString("unpunish_data")));
             rs.close();
             rs2.close();
             st.close();
@@ -115,8 +115,8 @@ public class Statements {
     public static void saveAccountsPunicoes() {
         try {
             openConnection();
-            PreparedStatement st2 = connection.prepareStatement("INSERT INTO ppunish_punicoes (nome, autor, tempo, motivo, id, provas, tipo) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            for (Account account : Account.accountsPunicoes) {
+            PreparedStatement st2 = connection.prepareStatement("INSERT INTO ppunish_punicoes (nome, autor, tempo, motivo, id, provas, tipo, unpunish_autor, unpunish_motivo, unpunish_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
                 if (exists(account.getPlayerName())) {
                     if (!existsId(account.getID())) {
                         st2.setString(1, account.getPlayerName());
@@ -126,6 +126,9 @@ public class Statements {
                         st2.setInt(5, account.getID());
                         st2.setString(6, account.getProvas());
                         st2.setString(7, account.getTipo());
+                        st2.setString(8, account.getUnpunish_autor());
+                        st2.setString(9, account.getUnpunish_motivo());
+                        st2.setString(10, account.getUnpunish_data());
                         st2.executeUpdate();
                     }
                 } else {
@@ -136,6 +139,9 @@ public class Statements {
                     st2.setInt(5, account.getID());
                     st2.setString(6, account.getProvas());
                     st2.setString(7, account.getTipo());
+                    st2.setString(8, account.getUnpunish_autor());
+                    st2.setString(9, account.getUnpunish_motivo());
+                    st2.setString(10, account.getUnpunish_data());
                     st2.executeUpdate();
                 }
             }

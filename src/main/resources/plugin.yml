@@ -3,8 +3,8 @@ version: 1.0
 author: Pedrodcp
 main: br.com.pedrodcp.ppunish.pPunish
 commands:
-  punir:
-    aliases: [punish]
+  punish:
+    aliases: [punir]
   unpunish:
     aliases: [despunir]
   checkpunish:

@@ -1,9 +1,10 @@
 package br.com.pedrodcp.ppunish.gui;
 
 import br.com.pedrodcp.ppunish.api.API;
-import br.com.pedrodcp.ppunish.models.Account;
+import br.com.pedrodcp.ppunish.models.PunishmentAccount;
 import br.com.pedrodcp.ppunish.utils.Scroller;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -26,16 +27,16 @@ public class Punishments {
 
     public void gameGUI(Player p) {
         ArrayList<Integer> listItens = new ArrayList<>();
-        for (Account account : Account.accountsPunicoes) {
+        for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
             if (account.getPlayerName().equalsIgnoreCase(playerName)) {
                 listItens.add(account.getID());
             }
         }
         //
         List<ItemStack> itens = new ArrayList<>();
-        for (Account account : Account.accountsPunicoes) {
+        for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
             if (account.getPlayerName().equalsIgnoreCase(playerName)) {
-                Account.accountsPunicoes.forEach(key -> {
+                PunishmentAccount.accountsPunicoes.forEach(key -> {
                     if (String.valueOf(key.getID()).equals(String.valueOf(account.getID()))) {
                         if (key.getProvas().equalsIgnoreCase("none")) {
                             keyProvas = "Não informado.";
@@ -46,8 +47,13 @@ public class Punishments {
                             keyCor = "§a";
                             keyStatus = "§aAtiva.";
                         } else {
-                            keyCor = "§c";
-                            keyStatus = "§cExpirada.";
+                            if (key.getUnpunish_autor().equalsIgnoreCase("none")) {
+                                keyCor = "§c";
+                                keyStatus = "§cExpirada.";
+                            } else {
+                                keyCor = "§8";
+                                keyStatus = "§8Revogada.";
+                            }
                         }
                         ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
                         SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
@@ -89,7 +95,7 @@ public class Punishments {
                         .withOnClick(new Scroller.ChooseItemRunnable() {
                             @Override
                             public void run(Player player, ItemStack item) {
-                                for (Account account : Account.accountsPunicoes) {
+                                for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
                                     if (account.getPlayerName().equalsIgnoreCase(playerName)) {
                                         Matcher m = pattern.matcher(item.getItemMeta().getLore().toString());
                                         if (m.find()) {
@@ -98,6 +104,8 @@ public class Punishments {
                                             punishId = punishDoubleId.intValue();
                                             p.openInventory(new PlayerPunishmentInfo().getInventory());
                                         } else {
+                                            p.closeInventory();
+                                            p.playSound(p.getLocation(), Sound.VILLAGER_NO, 5F, 1.0F);
                                             p.sendMessage("§cOcorreu um erro ao tentar abrir esta aba de informações.");
                                         }
                                     }

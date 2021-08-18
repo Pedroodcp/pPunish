@@ -1,7 +1,7 @@
 package br.com.pedrodcp.ppunish.gui;
 
 import br.com.pedrodcp.ppunish.api.API;
-import br.com.pedrodcp.ppunish.models.Account;
+import br.com.pedrodcp.ppunish.models.PunishmentAccount;
 import br.com.pedrodcp.ppunish.utils.Item;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -22,9 +22,23 @@ public class PlayerPunishmentInfo {
     protected String keyProvas;
     protected String keyCor;
     protected String keyStatus;
+    protected String keyData;
+    protected int keySize;
+    protected int keyArrowSlot;
 
     public PlayerPunishmentInfo() {
-        inventory = Bukkit.createInventory(null, 9 * 4, API.getAccount(playerName).getPlayerName() + " - Punição #" + punishId);
+        for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
+            if (account.getID() == punishId) {
+                if (account.getUnpunish_autor().equalsIgnoreCase("none")) {
+                    keySize = 4;
+                    keyArrowSlot = 31;
+                } else {
+                    keySize = 5;
+                    keyArrowSlot = 40;
+                }
+            }
+        }
+        inventory = Bukkit.createInventory(null, 9 * keySize, API.getAccount(playerName).getPlayerName() + " - Punição #" + punishId);
         setItens();
     }
 
@@ -39,7 +53,7 @@ public class PlayerPunishmentInfo {
                 .setLore(Arrays.asList("§7Esta punição não possui provas registradas.", "§7pelo autor da punição."))
                 .getItemStack();
 
-        for (Account account : Account.accountsPunicoes) {
+        for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
             if (account.getID() == punishId) {
                 if (account.getProvas().equalsIgnoreCase("none")) {
                     inventory.setItem(11, book2);
@@ -52,7 +66,7 @@ public class PlayerPunishmentInfo {
         ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
         SkullMeta skullMeta = (SkullMeta) head.getItemMeta();
         skullMeta.setOwner(playerName);
-        for (Account account : Account.accountsPunicoes) {
+        for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
             if (account.getID() == punishId) {
                 if (account.getProvas().equalsIgnoreCase("none")) {
                     keyProvas = "Não informado.";
@@ -63,8 +77,13 @@ public class PlayerPunishmentInfo {
                     keyCor = "§a";
                     keyStatus = "§aAtiva.";
                 } else {
-                    keyCor = "§c";
-                    keyStatus = "§cExpirada.";
+                    if (account.getUnpunish_autor().equalsIgnoreCase("none")) {
+                        keyCor = "§c";
+                        keyStatus = "§cExpirada.";
+                    } else {
+                        keyCor = "§8";
+                        keyStatus = "§8Revogada.";
+                    }
                 }
                 skullMeta.setDisplayName(keyCor + account.getMotivo());
                 skullMeta.setLore(Arrays.asList(
@@ -105,9 +124,9 @@ public class PlayerPunishmentInfo {
                 .setLore(Arrays.asList("§7Volte para a página de punições", "§7do jogador " + API.getAccount(playerName).getPlayerName() + "."))
                 .getItemStack();
 
-        inventory.setItem(31, arrow);
+        inventory.setItem(keyArrowSlot, arrow);
 
-        for (Account account : Account.accountsPunicoes) {
+        for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
             if (account.getID() == punishId) {
                 if (String.valueOf(API.getAccount(account.getPlayerName()).getID()).contains(String.valueOf(account.getID()))) {
                     if (account.getAutor().equalsIgnoreCase(autorName)) {
@@ -123,6 +142,30 @@ public class PlayerPunishmentInfo {
                     }
                 } else {
                     inventory.setItem(15, barrier3);
+                }
+            }
+        }
+
+        for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
+            if (account.getID() == punishId) {
+                if (!account.getUnpunish_autor().equalsIgnoreCase("none")) {
+                    ItemStack unpunish_info = new Item(Material.BOOK_AND_QUILL, 1, (short) 0)
+                            .setName("§8" + account.getMotivo())
+                            .setLore(Arrays.asList(
+                                    "",
+                                    "§7Revogada por: §f" + account.getUnpunish_autor(),
+                                    "§7Motivo: §f" + account.getUnpunish_motivo(),
+                                    "§7Data: §f" + account.getUnpunish_data().replace("-", "/"),
+                                    "",
+                                    "§7Aplicada inicialmente por: §f" + account.getAutor(),
+                                    "§7Motivo: §f" + account.getMotivo(),
+                                    "§7Provas: §f" + keyProvas,
+                                    "§7Tipo: §f" + account.getTipo(),
+                                    ""
+                            ))
+                            .getItemStack();
+
+                    inventory.setItem(22, unpunish_info);
                 }
             }
         }

@@ -2,9 +2,9 @@ package br.com.pedrodcp.ppunish.models;
 
 import java.util.ArrayList;
 
-public class Account {
+public class PunishmentAccount {
 
-    public static ArrayList<Account> accounts = new ArrayList<>();
+    public static ArrayList<PunishmentAccount> accountsPunicoes = new ArrayList<>();
 
     private String playerName;
     private String autor;
@@ -13,8 +13,11 @@ public class Account {
     private int id;
     private String provas;
     private String tipo;
+    private String unpunish_autor;
+    private String unpunish_motivo;
+    private String unpunish_data;
 
-    public Account(String playerName, String autor, long tempo, String motivo, int id, String provas, String tipo) {
+    public PunishmentAccount(String playerName, String autor, long tempo, String motivo, int id, String provas, String tipo, String unpunish_autor, String unpunish_motivo, String unpunish_data) {
         this.playerName = playerName;
         this.autor = autor;
         this.tempo = String.valueOf(tempo);
@@ -22,6 +25,9 @@ public class Account {
         this.id = id;
         this.provas = provas;
         this.tipo = tipo;
+        this.unpunish_autor = unpunish_autor;
+        this.unpunish_motivo = unpunish_motivo;
+        this.unpunish_data = unpunish_data;
     }
 
     public String getPlayerName() {
@@ -75,5 +81,30 @@ public class Account {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public String getUnpunish_autor() {
+        return unpunish_autor;
+    }
+
+    public void setUnpunish_autor(String unpunish_autor) {
+        this.unpunish_autor = unpunish_autor;
+    }
+
+    public String getUnpunish_motivo() {
+        return unpunish_motivo;
+    }
+
+    public void setUnpunish_motivo(String unpunish_motivo) {
+        this.unpunish_motivo = unpunish_motivo;
+    }
+
+    public String getUnpunish_data() {
+        return unpunish_data;
+    }
+
+    public void setUnpunish_data(String unpunish_data) {
+        this.unpunish_data = unpunish_data;
+    }
+
 
 }

@@ -44,7 +44,7 @@ public class Listeners implements Listener {
         }
         if (API.getAccount(p.getName()).getTempo() != 0) {
             if (API.getAccount(p.getName()).getTipo().equalsIgnoreCase("BAN")) {
-                p.kickPlayer("§cVocê foi banido!");
+                p.kickPlayer("§cVocê foi banido! Seu ID é §e#" + API.getAccount(p.getName()).getID());
             } else {
                 if (API.getAccount(p.getName()).getTipo().equalsIgnoreCase("TEMP_BAN")) {
                     if (System.currentTimeMillis() > API.getAccount(p.getName()).getTempo()) {
@@ -55,7 +55,7 @@ public class Listeners implements Listener {
                         API.getAccount(p.getName()).setProvas("none");
                         API.getAccount(p.getName()).setTipo("none");
                     } else {
-                        p.kickPlayer("§cVocê foi banido!");
+                        p.kickPlayer("§cVocê foi banido! Seu ID é §e#" + API.getAccount(p.getName()).getID());
                     }
                 } else {
                     if (System.currentTimeMillis() > API.getAccount(p.getName()).getTempo()) {
@@ -105,6 +105,7 @@ public class Listeners implements Listener {
                 p.sendMessage(" §c* Você está silenciado por " + getTempo(dif) + ".");
                 p.sendMessage("");
                 p.sendMessage(" §c* Motivo: " + motivo);
+                p.sendMessage(" §c* ID: §e#" + API.getAccount(p.getName()).getID());
                 p.sendMessage(" §c* Autor: " + API.getAccount(p.getName()).getAutor());
                 p.sendMessage(" §c* Crie um ticket de revisão em nosso Discord, acesse");
                 p.sendMessage(" §e§nmineup.com.br/discord§c.");

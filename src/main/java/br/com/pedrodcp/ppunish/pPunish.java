@@ -1,7 +1,7 @@
 package br.com.pedrodcp.ppunish;
 
 import br.com.pedrodcp.ppunish.commands.checkpunish;
-import br.com.pedrodcp.ppunish.commands.punir;
+import br.com.pedrodcp.ppunish.commands.punish;
 import br.com.pedrodcp.ppunish.commands.unpunish;
 import br.com.pedrodcp.ppunish.events.InventoryClick;
 import br.com.pedrodcp.ppunish.events.Listeners;
@@ -49,7 +49,7 @@ public class pPunish extends JavaPlugin {
     }
 
     public void loadCommands() {
-        getCommand("punir").setExecutor(new punir());
+        getCommand("punish").setExecutor(new punish());
         getCommand("unpunish").setExecutor(new unpunish());
         getCommand("checkpunish").setExecutor(new checkpunish());
     }

@@ -1,90 +1,126 @@
 package br.com.pedrodcp.ppunish.api;
 
-import br.com.pedrodcp.ppunish.models.Account;
+import br.com.pedrodcp.ppunish.models.PunishmentAccount;
 import org.bukkit.entity.Player;
 
-public class API {
+public class PunishmentsAPI {
 
-    public static Account getAccount(Player player) {
+    public static PunishmentAccount getAccount(Player player) {
         return getAccount(player.getName());
     }
 
-    public static Account getAccount(String player) {
-        for (Account account : Account.accounts)
+    public static PunishmentAccount getAccount(String player) {
+        for (PunishmentAccount account : PunishmentAccount.accountsPunicoes)
             if (account.getPlayerName().equalsIgnoreCase(player)) return account;
         return null;
     }
 
     public static boolean setAutor(String player, String autor) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         if (account == null) return false;
         account.setAutor(autor);
         return true;
     }
 
     public static boolean getAutor(String player, String autor) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         return account != null && account.getAutor() == autor;
     }
 
     public static boolean setTempo(String player, long tempo) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         if (account == null) return false;
         account.setTempo(tempo);
         return true;
     }
 
     public static boolean getTempo(String player, long tempo) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         return account != null && account.getTempo() == tempo;
     }
 
     public static boolean setMotivo(String player, String motivo) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         if (account == null) return false;
         account.setMotivo(motivo);
         return true;
     }
 
     public static boolean getMotivo(String player, String motivo) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         return account != null && account.getMotivo() == motivo;
     }
 
     public static boolean setID(String player, int id) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         if (account == null) return false;
         account.setID(id);
         return true;
     }
 
     public static boolean getID(String player, int id) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         return account != null && account.getID() == id;
     }
 
     public static boolean setProvas(String player, String provas) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         if (account == null) return false;
         account.setProvas(provas);
         return true;
     }
 
     public static boolean getProvas(String player, String provas) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         return account != null && account.getProvas() == provas;
     }
 
     public static boolean setTipo(String player, String tipo) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         if (account == null) return false;
         account.setTipo(tipo);
         return true;
     }
 
     public static boolean getTipo(String player, String tipo) {
-        Account account = getAccount(player);
+        PunishmentAccount account = getAccount(player);
         return account != null && account.getTipo() == tipo;
+    }
+
+    public static boolean setUnpunishAutor(String player, String autor) {
+        PunishmentAccount account = getAccount(player);
+        if (account == null) return false;
+        account.setUnpunish_autor(autor);
+        return true;
+    }
+
+    public static boolean getUnpunishAutor(String player, String autor) {
+        PunishmentAccount account = getAccount(player);
+        return account != null && account.getUnpunish_autor() == autor;
+    }
+
+    public static boolean setUnpunishMotivo(String player, String motivo) {
+        PunishmentAccount account = getAccount(player);
+        if (account == null) return false;
+        account.setUnpunish_motivo(motivo);
+        return true;
+    }
+
+    public static boolean getUnpunishMotivo(String player, String motivo) {
+        PunishmentAccount account = getAccount(player);
+        return account != null && account.getUnpunish_motivo() == motivo;
+    }
+
+    public static boolean setUnpunishData(String player, String data) {
+        PunishmentAccount account = getAccount(player);
+        if (account == null) return false;
+        account.setUnpunish_data(data);
+        return true;
+    }
+
+    public static boolean getUnpunishData(String player, String data) {
+        PunishmentAccount account = getAccount(player);
+        return account != null && account.getUnpunish_data() == data;
     }
 
     //
@@ -135,6 +171,30 @@ public class API {
 
     public static boolean getTipo(Player player, String tipo) {
         return getTipo(player.getName(), tipo);
+    }
+
+    public static boolean setUnpunishAutor(Player player, String autor) {
+        return setUnpunishAutor(player.getName(), autor);
+    }
+
+    public static boolean getUnpunishAutor(Player player, String autor) {
+        return getUnpunishAutor(player.getName(), autor);
+    }
+
+    public static boolean getUnpunishMotivo(Player player, String motivo) {
+        return getUnpunishMotivo(player.getName(), motivo);
+    }
+
+    public static boolean setUnpunishMotivo(Player player, String motivo) {
+        return setUnpunishMotivo(player.getName(), motivo);
+    }
+
+    public static boolean getUnpunishData(Player player, String data) {
+        return getUnpunishData(player.getName(), data);
+    }
+
+    public static boolean setUnpunishData(Player player, String data) {
+        return setUnpunishData(player.getName(), data);
     }
 
 }
