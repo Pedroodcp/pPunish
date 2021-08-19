@@ -64,7 +64,7 @@ public class Punishments {
                                 "§7ID: §f#" + key.getID(),
                                 "§7Infrator: §f" + key.getPlayerName(),
                                 "§7Autor: §f" + key.getAutor(),
-                                // "§7Data: §f" + new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()), //
+                                "§7Data: §f" + key.getData().replace("-", "/"),
                                 "",
                                 "§7Motivo: §f" + key.getMotivo(),
                                 "§7Tipo: §f" + key.getTipo(),

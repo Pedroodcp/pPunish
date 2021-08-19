@@ -91,7 +91,7 @@ public class PlayerPunishmentInfo {
                         "§7ID: §f#" + account.getID(),
                         "§7Infrator: §f" + account.getPlayerName(),
                         "§7Autor: §f" + account.getAutor(),
-                        // "§7Data: §f" + new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()), //
+                        "§7Data: §f" + account.getData().replace("-", "/"),
                         "",
                         "§7Motivo: §f" + account.getMotivo(),
                         "§7Tipo: §f" + account.getTipo(),

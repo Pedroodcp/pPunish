@@ -40,7 +40,7 @@ public class Statements {
             ResultSet rs = st.executeQuery();
             ResultSet rs2 = st2.executeQuery();
             while (rs.next()) Account.accounts.add(new Account(rs.getString("nome"), rs.getString("autor"), rs.getLong("tempo"), rs.getString("motivo"), rs.getInt("id"), rs.getString("provas"), rs.getString("tipo")));
-            while (rs2.next()) PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(rs2.getString("nome"), rs2.getString("autor"), rs2.getLong("tempo"), rs2.getString("motivo"), rs2.getInt("id"), rs2.getString("provas"), rs2.getString("tipo"), rs2.getString("unpunish_autor"), rs2.getString("unpunish_motivo"), rs2.getString("unpunish_data")));
+            while (rs2.next()) PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(rs2.getString("nome"), rs2.getString("autor"), rs2.getLong("tempo"), rs2.getString("motivo"), rs2.getInt("id"), rs2.getString("provas"), rs2.getString("tipo"), rs2.getString("data"), rs2.getString("unpunish_autor"), rs2.getString("unpunish_motivo"), rs2.getString("unpunish_data")));
             rs.close();
             rs2.close();
             st.close();
@@ -115,7 +115,7 @@ public class Statements {
     public static void saveAccountsPunicoes() {
         try {
             openConnection();
-            PreparedStatement st2 = connection.prepareStatement("INSERT INTO ppunish_punicoes (nome, autor, tempo, motivo, id, provas, tipo, unpunish_autor, unpunish_motivo, unpunish_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement st2 = connection.prepareStatement("INSERT INTO ppunish_punicoes (nome, autor, tempo, motivo, id, provas, tipo, data, unpunish_autor, unpunish_motivo, unpunish_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
                 if (exists(account.getPlayerName())) {
                     if (!existsId(account.getID())) {
@@ -126,9 +126,10 @@ public class Statements {
                         st2.setInt(5, account.getID());
                         st2.setString(6, account.getProvas());
                         st2.setString(7, account.getTipo());
-                        st2.setString(8, account.getUnpunish_autor());
-                        st2.setString(9, account.getUnpunish_motivo());
-                        st2.setString(10, account.getUnpunish_data());
+                        st2.setString(8, account.getData());
+                        st2.setString(9, account.getUnpunish_autor());
+                        st2.setString(10, account.getUnpunish_motivo());
+                        st2.setString(11, account.getUnpunish_data());
                         st2.executeUpdate();
                     }
                 } else {
@@ -139,9 +140,10 @@ public class Statements {
                     st2.setInt(5, account.getID());
                     st2.setString(6, account.getProvas());
                     st2.setString(7, account.getTipo());
-                    st2.setString(8, account.getUnpunish_autor());
-                    st2.setString(9, account.getUnpunish_motivo());
-                    st2.setString(10, account.getUnpunish_data());
+                    st2.setString(8, account.getData());
+                    st2.setString(9, account.getUnpunish_autor());
+                    st2.setString(10, account.getUnpunish_motivo());
+                    st2.setString(11, account.getUnpunish_data());
                     st2.executeUpdate();
                 }
             }

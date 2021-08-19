@@ -3,6 +3,7 @@ package br.com.pedrodcp.ppunish.commands;
 import br.com.pedrodcp.ppunish.api.API;
 import br.com.pedrodcp.ppunish.models.Account;
 import br.com.pedrodcp.ppunish.models.PunishmentAccount;
+import br.com.pedrodcp.ppunish.utils.FancyMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -43,9 +44,9 @@ public class unpunish implements CommandExecutor {
                                     } else {
                                         for (Player all : Bukkit.getOnlinePlayers()) {
                                             all.sendMessage("");
-                                            all.sendMessage(" §e» " + accounts.getPlayerName() + " §eteve sua punição revogada por " + p.getName());
-                                            all.sendMessage(" §e» Aplicada inicialmente por: " + API.getAccount(accounts.getPlayerName()).getAutor());
-                                            all.sendMessage(" §e» Motivo: Punição aplicada incorretamente.");
+                                            new FancyMessage(" §e» ").text("§e" + accounts.getPlayerName() + " §eteve §esua §epunição §erevogada §epor §e" + p.getName()).hover("§7Clique §7para §7detalhes §7sobre §7a §7punição").command("/checkpunish #" + keyID).send(p);
+                                            new FancyMessage(" §e» ").text("§e" + accounts.getPlayerName() + " §eAplicada §einicialmente §epor §e" + API.getAccount(accounts.getPlayerName()).getAutor()).hover("§7Clique §7para §7detalhes §7sobre §7a §7punição").command("/checkpunish #" + keyID).send(p);
+                                            new FancyMessage(" §e» ").text("§e" + accounts.getPlayerName() + " §eMotivo: §ePunição aplicada incorretamente.").hover("§7Clique §7para §7detalhes §7sobre §7a §7punição").command("/checkpunish #" + keyID).send(p);
                                             all.sendMessage("");
                                             p.sendMessage("§eA punição §b#" + accounts.getID() + " §edo jogador " + accounts.getPlayerName() + " foi revogada.");
                                             for (PunishmentAccount punishmentAccounts : PunishmentAccount.accountsPunicoes) {

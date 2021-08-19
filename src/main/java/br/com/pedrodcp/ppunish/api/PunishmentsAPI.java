@@ -87,6 +87,18 @@ public class PunishmentsAPI {
         return account != null && account.getTipo() == tipo;
     }
 
+    public static boolean setData(String player, String data) {
+        PunishmentAccount account = getAccount(player);
+        if (account == null) return false;
+        account.setData(data);
+        return true;
+    }
+
+    public static boolean getData(String player, String data) {
+        PunishmentAccount account = getAccount(player);
+        return account != null && account.getData() == data;
+    }
+
     public static boolean setUnpunishAutor(String player, String autor) {
         PunishmentAccount account = getAccount(player);
         if (account == null) return false;
@@ -171,6 +183,14 @@ public class PunishmentsAPI {
 
     public static boolean getTipo(Player player, String tipo) {
         return getTipo(player.getName(), tipo);
+    }
+
+    public static boolean getData(Player player, String data) {
+        return getData(player.getName(), data);
+    }
+
+    public static boolean setData(Player player, String data) {
+        return setData(player.getName(), data);
     }
 
     public static boolean setUnpunishAutor(Player player, String autor) {

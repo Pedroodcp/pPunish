@@ -13,11 +13,12 @@ public class PunishmentAccount {
     private int id;
     private String provas;
     private String tipo;
+    private String data;
     private String unpunish_autor;
     private String unpunish_motivo;
     private String unpunish_data;
 
-    public PunishmentAccount(String playerName, String autor, long tempo, String motivo, int id, String provas, String tipo, String unpunish_autor, String unpunish_motivo, String unpunish_data) {
+    public PunishmentAccount(String playerName, String autor, long tempo, String motivo, int id, String provas, String tipo, String data, String unpunish_autor, String unpunish_motivo, String unpunish_data) {
         this.playerName = playerName;
         this.autor = autor;
         this.tempo = String.valueOf(tempo);
@@ -25,6 +26,7 @@ public class PunishmentAccount {
         this.id = id;
         this.provas = provas;
         this.tipo = tipo;
+        this.data = data;
         this.unpunish_autor = unpunish_autor;
         this.unpunish_motivo = unpunish_motivo;
         this.unpunish_data = unpunish_data;
@@ -82,6 +84,14 @@ public class PunishmentAccount {
         this.tipo = tipo;
     }
 
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
     public String getUnpunish_autor() {
         return unpunish_autor;
     }
@@ -105,6 +115,5 @@ public class PunishmentAccount {
     public void setUnpunish_data(String unpunish_data) {
         this.unpunish_data = unpunish_data;
     }
-
 
 }
