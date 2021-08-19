@@ -21,7 +21,7 @@ public class Statements {
         try {
             openConnection();
             PreparedStatement st = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ppunish_registro (nome varchar(16), autor text, tempo long, motivo text, id int, provas text, tipo text)");
-            PreparedStatement st2 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ppunish_punicoes (nome varchar(16), autor text, tempo long, motivo text, id int, provas text, tipo text, unpunish_autor text, unpunish_motivo text, unpunish_data text)");
+            PreparedStatement st2 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ppunish_punicoes (nome varchar(16), autor text, tempo long, motivo text, id int, provas text, tipo text, data text, unpunish_autor text, unpunish_motivo text, unpunish_data text)");
             st.executeUpdate();
             st.close();
             st2.executeUpdate();

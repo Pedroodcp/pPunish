@@ -12,7 +12,11 @@ import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
+import static br.com.pedrodcp.ppunish.commands.checkpunish.*;
+
 public class onPlayerPunished {
+
+    public static boolean keyIdIsNotChatCommand = false;
 
     public static String PlayerMuted(CommandSender player, String jogador, String provas, String motivo, int tempo, String tipo, String msg) {
         if (player instanceof Player) {
@@ -22,62 +26,71 @@ public class onPlayerPunished {
                 } else {
                     for (Player all : Bukkit.getOnlinePlayers()) {
                         int IdCount = PunishmentAccount.accountsPunicoes.size() + 1;
-                        all.sendMessage("");
-                        new FancyMessage(" §c» ").text("§c" + API.getAccount(jogador).getPlayerName() + " §cfoi §c" + msg + " §cpor §c" + player.getName()).hover("§7Clique §7para §7mais §7informações").command("/checkpunish #" + IdCount).send(((Player) player).getPlayer());
-                        new FancyMessage(" §c» ").text("§cMotivo: §c" + motivo).hover("§7Clique para mais informações").command("/checkpunish #" + IdCount).send(((Player) player).getPlayer());
-                        all.sendMessage("");
-                        player.sendMessage("§eJogador punido com sucesso.");
                         long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
                         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
                         calendar.add(Calendar.HOUR, 1);
-                        PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, "none", "none", "none", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime())));
+                        PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime()), "none", "none", "none"));
+                        keyID = String.valueOf(IdCount);
+                        autorName = player.getName();
+                        keyIdIsNotChatCommand = true;
                         API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                         API.getAccount(jogador).setAutor(player.getName());
                         API.getAccount(jogador).setMotivo(motivo);
                         API.getAccount(jogador).setID(IdCount);
                         API.getAccount(jogador).setProvas("none");
                         API.getAccount(jogador).setTipo(tipo);
+                        all.sendMessage("");
+                        new FancyMessage(" §c» ").text("§c" + API.getAccount(jogador).getPlayerName() + " §cfoi §c" + msg + " §cpor §c" + player.getName()).hover("§7Clique §7para §7mais §7informações").command("/checkpunish #" + IdCount).send(((Player) player).getPlayer());
+                        new FancyMessage(" §c» ").text("§cMotivo: §c" + motivo).hover("§7Clique para mais informações").command("/checkpunish #" + keyID).send(((Player) player).getPlayer());
+                        all.sendMessage("");
+                        player.sendMessage("§ePunição §b#" + IdCount + " §eaplicada com sucesso.");
                     }
                 }
             } else {
                 if (provas.startsWith("https://")) {
                     for (Player all : Bukkit.getOnlinePlayers()) {
                         int IdCount = PunishmentAccount.accountsPunicoes.size() + 1;
-                        all.sendMessage("");
-                        new FancyMessage(" §c» ").text("§c" + API.getAccount(jogador).getPlayerName() + " §cfoi §c" + msg + " §cpor §c" + player.getName()).hover("§7Clique §7para §7mais §7informações").command("/checkpunish " + IdCount).send(((Player) player).getPlayer());
-                        new FancyMessage(" §c» ").text("§cMotivo: §c" + motivo).hover("§7Clique para mais informações").command("/checkpunish #" + IdCount).send(((Player) player).getPlayer());
-                        all.sendMessage("");
-                        player.sendMessage("§eJogador punido com sucesso.");
                         long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
                         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
                         calendar.add(Calendar.HOUR, 1);
-                        PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, "none", "none", "none", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime())));
+                        PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime()), "none", "none", "none"));
+                        keyID = String.valueOf(IdCount);
+                        autorName = player.getName();
+                        keyIdIsNotChatCommand = true;
                         API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                         API.getAccount(jogador).setAutor(player.getName());
                         API.getAccount(jogador).setMotivo(motivo);
                         API.getAccount(jogador).setID(IdCount);
                         API.getAccount(jogador).setProvas(provas);
                         API.getAccount(jogador).setTipo(tipo);
+                        all.sendMessage("");
+                        new FancyMessage(" §c» ").text("§c" + API.getAccount(jogador).getPlayerName() + " §cfoi §c" + msg + " §cpor §c" + player.getName()).hover("§7Clique §7para §7mais §7informações").command("/checkpunish " + IdCount).send(((Player) player).getPlayer());
+                        new FancyMessage(" §c» ").text("§cMotivo: §c" + motivo).hover("§7Clique para mais informações").command("/checkpunish #" + keyID).send(((Player) player).getPlayer());
+                        all.sendMessage("");
+                        player.sendMessage("§ePunição §b#" + IdCount + " §eaplicada com sucesso.");
                     }
                 } else {
                     if (provas.startsWith("http://")) {
                         for (Player all : Bukkit.getOnlinePlayers()) {
                             int IdCount = PunishmentAccount.accountsPunicoes.size() + 1;
-                                all.sendMessage("");
-                                new FancyMessage(" §c» ").text("§c" + API.getAccount(jogador).getPlayerName() + " §cfoi §c" + msg + " §cpor §c" + player.getName()).hover("§7Clique §7para §7mais §7informações").command("/checkpunish " + IdCount).send(((Player) player).getPlayer());
-                                new FancyMessage(" §c» ").text("§cMotivo: §c" + motivo).hover("§7Clique §7para §7mais §7informações").command("/checkpunish #" + IdCount).send(((Player) player).getPlayer());
-                                all.sendMessage("");
-                                player.sendMessage("§eJogador punido com sucesso.");
-                                long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
+                            long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
                             Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
                             calendar.add(Calendar.HOUR, 1);
-                                PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, "none", "none", "none", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime())));
-                                API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
-                                API.getAccount(jogador).setAutor(player.getName());
-                                API.getAccount(jogador).setMotivo(motivo);
-                                API.getAccount(jogador).setID(IdCount);
-                                API.getAccount(jogador).setProvas(provas);
-                                API.getAccount(jogador).setTipo(tipo);
+                            PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime()), "none", "none", "none"));
+                            keyID = String.valueOf(IdCount);
+                            autorName = player.getName();
+                            keyIdIsNotChatCommand = true;
+                            API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
+                            API.getAccount(jogador).setAutor(player.getName());
+                            API.getAccount(jogador).setMotivo(motivo);
+                            API.getAccount(jogador).setID(IdCount);
+                            API.getAccount(jogador).setProvas(provas);
+                            API.getAccount(jogador).setTipo(tipo);
+                                all.sendMessage("");
+                                new FancyMessage(" §c» ").text("§c" + API.getAccount(jogador).getPlayerName() + " §cfoi §c" + msg + " §cpor §c" + player.getName()).hover("§7Clique §7para §7mais §7informações").command("/checkpunish " + IdCount).send(((Player) player).getPlayer());
+                                new FancyMessage(" §c» ").text("§cMotivo: §c" + motivo).hover("§7Clique §7para §7mais §7informações").command("/checkpunish #" + keyID).send(((Player) player).getPlayer());
+                                all.sendMessage("");
+                                player.sendMessage("§ePunição §b#" + IdCount + " §eaplicada com sucesso.");
                         }
                     } else {
                         player.sendMessage("§cAs provas inseridas são consideradas inválidas.");
@@ -91,58 +104,67 @@ public class onPlayerPunished {
                     player.sendMessage("§cSomente administradores e superiores podem punir sem provas.");
                 } else {
                     int IdCount = PunishmentAccount.accountsPunicoes.size() + 1;
+                    long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
+                    Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
+                    calendar.add(Calendar.HOUR, 1);
+                    PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime()), "none", "none", "none"));
+                    keyID = String.valueOf(IdCount);
+                    autorName = player.getName();
+                    keyIdIsNotChatCommand = true;
+                    API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
+                    API.getAccount(jogador).setAutor(player.getName());
+                    API.getAccount(jogador).setMotivo(motivo);
+                    API.getAccount(jogador).setID(IdCount);
+                    API.getAccount(jogador).setProvas("none");
+                    API.getAccount(jogador).setTipo(tipo);
                         Bukkit.getConsoleSender().sendMessage("");
                         Bukkit.getConsoleSender().sendMessage(" §c» " + API.getAccount(jogador).getPlayerName() + " foi " + msg + " por " + player.getName());
                         Bukkit.getConsoleSender().sendMessage(" §c» Motivo: " + motivo);
                         Bukkit.getConsoleSender().sendMessage("");
-                        player.sendMessage("§eJogador punido com sucesso.");
-                        long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
-                        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
-                        calendar.add(Calendar.HOUR, 1);
-                        PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, "none", "none", "none", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime())));
-                        API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
-                        API.getAccount(jogador).setAutor(player.getName());
-                        API.getAccount(jogador).setMotivo(motivo);
-                        API.getAccount(jogador).setID(IdCount);
-                        API.getAccount(jogador).setProvas("none");
-                        API.getAccount(jogador).setTipo(tipo);
+                        player.sendMessage("§ePunição §b#" + IdCount + " §eaplicada com sucesso.");
                 }
             } else {
                 if (provas.startsWith("https://")) {
                     int IdCount = PunishmentAccount.accountsPunicoes.size() + 1;
-                    Bukkit.getConsoleSender().sendMessage("");
-                    Bukkit.getConsoleSender().sendMessage(" §c» " + API.getAccount(jogador).getPlayerName() + " foi " + msg + " por " + player.getName());
-                    Bukkit.getConsoleSender().sendMessage(" §c» Motivo: " + motivo + " - " + provas);
-                    Bukkit.getConsoleSender().sendMessage("");
-                    player.sendMessage("§eJogador punido com sucesso.");
                     long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
                     Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
                     calendar.add(Calendar.HOUR, 1);
-                    PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, "none", "none", "none", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime())));
+                    PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime()), "none", "none", "none"));
+                    keyID = String.valueOf(IdCount);
+                    autorName = player.getName();
+                    keyIdIsNotChatCommand = true;
                     API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                     API.getAccount(jogador).setAutor(player.getName());
                     API.getAccount(jogador).setMotivo(motivo);
                     API.getAccount(jogador).setID(IdCount);
                     API.getAccount(jogador).setProvas(provas);
                     API.getAccount(jogador).setTipo(tipo);
+                    Bukkit.getConsoleSender().sendMessage("");
+                    Bukkit.getConsoleSender().sendMessage(" §c» " + API.getAccount(jogador).getPlayerName() + " foi " + msg + " por " + player.getName());
+                    Bukkit.getConsoleSender().sendMessage(" §c» Motivo: " + motivo + " - " + provas);
+                    Bukkit.getConsoleSender().sendMessage("");
+                    player.sendMessage("§ePunição §b#" + IdCount + " §eaplicada com sucesso.");
                 } else {
                     if (provas.startsWith("http://")) {
                         int IdCount = PunishmentAccount.accountsPunicoes.size() + 1;
-                        Bukkit.getConsoleSender().sendMessage("");
-                        Bukkit.getConsoleSender().sendMessage(" §c» " + API.getAccount(jogador).getPlayerName() + " foi " + msg + " por " + player.getName());
-                        Bukkit.getConsoleSender().sendMessage(" §c» Motivo: " + motivo + " - " + provas);
-                        Bukkit.getConsoleSender().sendMessage("");
-                        player.sendMessage("§eJogador punido com sucesso.");
                         long time = TimeUnit.MILLISECONDS.convert(tempo, TimeUnit.HOURS);
                         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
                         calendar.add(Calendar.HOUR, 1);
-                        PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, "none", "none", "none", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime())));
+                        PunishmentAccount.accountsPunicoes.add(new PunishmentAccount(API.getAccount(jogador).getPlayerName(), player.getName(), System.currentTimeMillis() + time, motivo, IdCount, provas, tipo, new SimpleDateFormat("dd-MM-yyyy HH:mm").format(calendar.getTime()), "none", "none", "none"));
+                        keyID = String.valueOf(IdCount);
+                        autorName = player.getName();
+                        keyIdIsNotChatCommand = true;
                         API.getAccount(jogador).setTempo(System.currentTimeMillis() + time);
                         API.getAccount(jogador).setAutor(player.getName());
                         API.getAccount(jogador).setMotivo(motivo);
                         API.getAccount(jogador).setID(IdCount);
                         API.getAccount(jogador).setProvas(provas);
                         API.getAccount(jogador).setTipo(tipo);
+                        Bukkit.getConsoleSender().sendMessage("");
+                        Bukkit.getConsoleSender().sendMessage(" §c» " + API.getAccount(jogador).getPlayerName() + " foi " + msg + " por " + player.getName());
+                        Bukkit.getConsoleSender().sendMessage(" §c» Motivo: " + motivo + " - " + provas);
+                        Bukkit.getConsoleSender().sendMessage("");
+                        player.sendMessage("§ePunição §b#" + IdCount + " §eaplicada com sucesso.");
                     } else {
                         Bukkit.getConsoleSender().sendMessage("§cAs provas inseridas são consideradas inválidas.");
                     }

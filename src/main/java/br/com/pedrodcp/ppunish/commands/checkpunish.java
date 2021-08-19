@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static br.com.pedrodcp.ppunish.gui.Punishments.*;
+import static br.com.pedrodcp.ppunish.commands.punishevents.onPlayerPunished.*;
 
 public class checkpunish implements CommandExecutor {
 
@@ -20,9 +21,9 @@ public class checkpunish implements CommandExecutor {
 
     public static String playerName;
     public static String autorName;
+    public static String keyID;
 
-    protected String keyID;
-    protected Double keyDoubleID;
+    protected static Double keyDoubleID;
 
     @Override
     public boolean onCommand(CommandSender s, Command c, String label, String[] args) {
@@ -34,38 +35,55 @@ public class checkpunish implements CommandExecutor {
                 p.sendMessage("§cVocê não possui permissão para utilizar este comando.");
             } else {
                 if (args.length >= 1) {
-                    if (args[0].contains("#")) {
-                        keyID = args[0].replace("#", "");
-                    } else {
-                        keyID = args[0];
-                    }
-                    try {
-                        Double.parseDouble(keyID);
-                        keyDoubleID = Double.parseDouble(keyID);
-                    } catch (Exception e) {
-                        if (args[0].startsWith("#")) {
-                            new FancyMessage("§cUtilize ").text("§c/checkpunish §c<#ID>").suggest("/checkpunish #").text("§c.").send(p);
-                        } else {
-                            if (API.getAccount(args[0]) == null) {
-                                p.sendMessage("§cEste jogador não existe.");
-                            } else {
-                                if (PunishmentsAPI.getAccount(args[0]) == null) {
-                                    p.sendMessage("§cEste jogador não possui um histórico de punições.");
-                                } else {
-                                    playerName = args[0];
-                                    autorName = p.getName();
-                                    gui.gameGUI(p);
-                                }
-                            }
-                            return false;
+                    if (keyIdIsNotChatCommand == true) {
+                        keyIdIsNotChatCommand = false;
+                        if (keyID.contains("#")) {
+                            keyID = keyID.replace("#", "");
                         }
-                    }
-                    for (PunishmentAccount punishmentAccounts : PunishmentAccount.accountsPunicoes) {
-                        if (punishmentAccounts.getID() == keyDoubleID.intValue()) {
-                            p.playSound(p.getLocation(), Sound.ORB_PICKUP, 5F, 1.0F);
-                            punishId = punishmentAccounts.getID();
-                            playerName = punishmentAccounts.getPlayerName();
-                            p.openInventory(new PlayerPunishmentInfo().getInventory());
+                        for (PunishmentAccount punishmentAccounts : PunishmentAccount.accountsPunicoes) {
+                            if (punishmentAccounts.getID() == keyDoubleID.intValue()) {
+                                p.playSound(p.getLocation(), Sound.ORB_PICKUP, 5F, 1.0F);
+                                punishId = punishmentAccounts.getID();
+                                playerName = punishmentAccounts.getPlayerName();
+                                autorName = p.getName();
+                                p.openInventory(new PlayerPunishmentInfo().getInventory());
+                            }
+                        }
+                    } else {
+                        if (args[0].contains("#")) {
+                            keyID = args[0].replace("#", "");
+                        } else {
+                            keyID = args[0];
+                        }
+                        try {
+                            Double.parseDouble(keyID);
+                            keyDoubleID = Double.parseDouble(keyID);
+                        } catch (Exception e) {
+                            if (args[0].equals("#")) {
+                                new FancyMessage("§cUtilize ").text("§c/checkpunish §c<#ID>").suggest("/checkpunish #").text("§c.").send(p);
+                            } else {
+                                if (API.getAccount(args[0]) == null) {
+                                    p.sendMessage("§cEste jogador não existe.");
+                                } else {
+                                    if (PunishmentsAPI.getAccount(args[0]) == null) {
+                                        p.sendMessage("§cEste jogador não possui um histórico de punições.");
+                                    } else {
+                                        playerName = args[0];
+                                        autorName = p.getName();
+                                        gui.gameGUI(p);
+                                    }
+                                }
+                                return false;
+                            }
+                        }
+                        for (PunishmentAccount punishmentAccounts : PunishmentAccount.accountsPunicoes) {
+                            if (punishmentAccounts.getID() == keyDoubleID.intValue()) {
+                                p.playSound(p.getLocation(), Sound.ORB_PICKUP, 5F, 1.0F);
+                                punishId = punishmentAccounts.getID();
+                                playerName = punishmentAccounts.getPlayerName();
+                                autorName = p.getName();
+                                p.openInventory(new PlayerPunishmentInfo().getInventory());
+                            }
                         }
                     }
                 } else {
