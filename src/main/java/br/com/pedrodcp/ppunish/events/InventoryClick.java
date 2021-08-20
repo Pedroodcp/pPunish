@@ -57,20 +57,25 @@ public class InventoryClick implements Listener {
                                             p.playSound(p.getLocation(), Sound.VILLAGER_NO, 5F, 1.0F);
                                             //
                                         } else {
-                                            if (account.getAutor().equals(p.getName())) {
-                                                p.playSound(p.getLocation(), Sound.CLICK, 5F, 1.0F);
-                                                p.closeInventory();
-                                                p.sendMessage("");
-                                                new FancyMessage("§c§l[PUNIÇÃO §c§l- §c§l#" + punishId + "] §c§l» §fClique ").text("§b§lAQUI").hover("§7Clique §7para §7revogar §7esta §7punição").suggest("/unpunish #" + punishId).text(" §fpara §frevogar §festa §fpunição.").send(p);
-                                                p.sendMessage("");
+                                            if (i.getItemMeta().getLore().equals(Collections.singletonList("§7Esta punição foi revogada."))) {
+                                                p.playSound(p.getLocation(), Sound.VILLAGER_NO, 5F, 1.0F);
                                                 //
                                             } else {
-                                                if (p.hasPermission("ppunish.admin")) {
+                                                if (account.getAutor().equals(p.getName())) {
                                                     p.playSound(p.getLocation(), Sound.CLICK, 5F, 1.0F);
+                                                    p.closeInventory();
+                                                    p.sendMessage("");
                                                     new FancyMessage("§c§l[PUNIÇÃO §c§l- §c§l#" + punishId + "] §c§l» §fClique ").text("§b§lAQUI").hover("§7Clique §7para §7revogar §7esta §7punição").suggest("/unpunish #" + punishId).text(" §fpara §frevogar §festa §fpunição.").send(p);
+                                                    p.sendMessage("");
                                                     //
                                                 } else {
-                                                    p.playSound(p.getLocation(), Sound.VILLAGER_NO, 5F, 1.0F);
+                                                    if (p.hasPermission("ppunish.admin")) {
+                                                        p.playSound(p.getLocation(), Sound.CLICK, 5F, 1.0F);
+                                                        new FancyMessage("§c§l[PUNIÇÃO §c§l- §c§l#" + punishId + "] §c§l» §fClique ").text("§b§lAQUI").hover("§7Clique §7para §7revogar §7esta §7punição").suggest("/unpunish #" + punishId).text(" §fpara §frevogar §festa §fpunição.").send(p);
+                                                        //
+                                                    } else {
+                                                        p.playSound(p.getLocation(), Sound.VILLAGER_NO, 5F, 1.0F);
+                                                    }
                                                 }
                                             }
                                         }

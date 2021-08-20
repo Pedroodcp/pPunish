@@ -40,6 +40,7 @@ public class checkpunish implements CommandExecutor {
                         if (keyID.contains("#")) {
                             keyID = keyID.replace("#", "");
                         }
+                        keyDoubleID = Double.parseDouble(keyID);
                         for (PunishmentAccount punishmentAccounts : PunishmentAccount.accountsPunicoes) {
                             if (punishmentAccounts.getID() == keyDoubleID.intValue()) {
                                 p.playSound(p.getLocation(), Sound.ORB_PICKUP, 5F, 1.0F);

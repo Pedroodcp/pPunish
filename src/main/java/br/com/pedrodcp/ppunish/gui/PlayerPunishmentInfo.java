@@ -119,6 +119,11 @@ public class PlayerPunishmentInfo {
                 .setLore(Collections.singletonList("§7Esta punição já expirou."))
                 .getItemStack();
 
+        ItemStack barrier4 = new Item(Material.BARRIER, 1, (short) 0)
+                .setName("§cRevogar Punição")
+                .setLore(Collections.singletonList("§7Esta punição foi revogada."))
+                .getItemStack();
+
         ItemStack arrow = new Item(Material.ARROW, 1, (short) 0)
                 .setName("§aVoltar")
                 .setLore(Arrays.asList("§7Volte para a página de punições", "§7do jogador " + API.getAccount(playerName).getPlayerName() + "."))
@@ -128,7 +133,7 @@ public class PlayerPunishmentInfo {
 
         for (PunishmentAccount account : PunishmentAccount.accountsPunicoes) {
             if (account.getID() == punishId) {
-                if (String.valueOf(API.getAccount(account.getPlayerName()).getID()).contains(String.valueOf(account.getID()))) {
+                if (String.valueOf(API.getAccount(account.getPlayerName()).getID()).equals(String.valueOf(account.getID()))) {
                     if (account.getAutor().equalsIgnoreCase(autorName)) {
                         inventory.setItem(15, barrier1);
                     } else {
@@ -141,7 +146,11 @@ public class PlayerPunishmentInfo {
                         }
                     }
                 } else {
-                    inventory.setItem(15, barrier3);
+                    if (account.getUnpunish_autor().equals("none")) {
+                        inventory.setItem(15, barrier3);
+                    } else {
+                        inventory.setItem(15, barrier4);
+                    }
                 }
             }
         }
