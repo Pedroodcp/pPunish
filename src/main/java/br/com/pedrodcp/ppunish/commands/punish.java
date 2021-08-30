@@ -39,16 +39,16 @@ public class punish implements CommandExecutor {
                                     if (args.length >= 2) {
                                         if (args[1].equalsIgnoreCase("ameaca")) {
                                             if (args.length >= 3) {
-                                                PlayerMuted(p, args[0], args[2], "Ameaça", 12, "MUTE", "mutado");
+                                                PlayerPunished(p, args[0], args[2], "Ameaça", 12, "MUTE", "mutado");
                                             } else {
-                                                PlayerMuted(p, args[0], "none", "Ameaça", 12, "MUTE", "mutado");
+                                                PlayerPunished(p, args[0], "none", "Ameaça", 12, "MUTE", "mutado");
                                             }
                                         } else {
                                             if (args[1].equalsIgnoreCase("hack")) {
                                                 if (args.length >= 3) {
-                                                    PlayerMuted(p, args[0], args[2], "Uso de Hack", 100, "BAN", "banido");
+                                                    PlayerPunished(p, args[0], args[2], "Uso de Hack", 100, "BAN", "banido");
                                                 } else {
-                                                    PlayerMuted(p, args[0], "none", "Uso de Hack", 100, "BAN", "banido");
+                                                    PlayerPunished(p, args[0], "none", "Uso de Hack", 100, "BAN", "banido");
                                                 }
                                             } else {
                                                 p.sendMessage("§cEste motivo não está presente na lista de infrações.");
@@ -84,16 +84,16 @@ public class punish implements CommandExecutor {
                                 if (args.length >= 2) {
                                     if (args[1].equalsIgnoreCase("ameaca")) {
                                         if (args.length >= 3) {
-                                            PlayerMuted(s, args[0], args[2], "Ameaça", 12, "MUTE", "mutado");
+                                            PlayerPunished(s, args[0], args[2], "Ameaça", 12, "MUTE", "mutado");
                                         } else {
-                                            PlayerMuted(s, args[0], "none", "Ameaça", 12, "MUTE", "mutado");
+                                            PlayerPunished(s, args[0], "none", "Ameaça", 12, "MUTE", "mutado");
                                         }
                                     } else {
                                         if (args[1].equalsIgnoreCase("hack")) {
                                             if (args.length >= 3) {
-                                                PlayerMuted(s, args[0], args[2], "Uso de Hack", 100, "BAN", "banido");
+                                                PlayerPunished(s, args[0], args[2], "Uso de Hack", 100, "BAN", "banido");
                                             } else {
-                                                PlayerMuted(s, args[0], "none", "Uso de Hack", 100, "BAN", "banido");
+                                                PlayerPunished(s, args[0], "none", "Uso de Hack", 100, "BAN", "banido");
                                             }
                                         } else {
                                             s.sendMessage("§cEste motivo não está presente na lista de infrações.");
