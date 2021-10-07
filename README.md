@@ -1,2 +1,2 @@
 # pPunish
- Punishment plugin with BungeeCord integration via MySQL connection.
+ Full based punishment plugin linked to SQL methods.
