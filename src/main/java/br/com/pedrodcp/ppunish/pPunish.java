@@ -36,6 +36,7 @@ public class pPunish extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage("§a[pPunish] Sistemas carregados e ativados com sucesso.");
         Bukkit.getConsoleSender().sendMessage("");
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "Bungeecord");
     }
 
     @Override
