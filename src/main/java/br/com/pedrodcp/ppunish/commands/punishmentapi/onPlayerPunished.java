@@ -1,4 +1,4 @@
-package br.com.pedrodcp.ppunish.commands.punishevents;
+package br.com.pedrodcp.ppunish.commands.punishmentapi;
 
 import br.com.pedrodcp.ppunish.api.API;
 import br.com.pedrodcp.ppunish.managers.TimeManager;

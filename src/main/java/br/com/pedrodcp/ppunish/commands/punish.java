@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static br.com.pedrodcp.ppunish.commands.punishevents.onPlayerPunished.*;
+import static br.com.pedrodcp.ppunish.commands.punishmentapi.onPlayerPunished.*;
 
 public class punish implements CommandExecutor {
 

@@ -13,7 +13,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static br.com.pedrodcp.ppunish.gui.Punishments.*;
-import static br.com.pedrodcp.ppunish.commands.punishevents.onPlayerPunished.*;
 
 public class checkpunish implements CommandExecutor {
 
